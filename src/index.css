@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gbc-gray text-gbc-black font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold text-gbc-black;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6 sm:px-8;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-display font-semibold transition-all duration-300 transform active:scale-95 shadow-md hover:shadow-lg;
+  }
+  
+  .btn-primary {
+    @apply btn bg-gbc-green text-white hover:bg-opacity-90;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-gbc-blue text-white hover:bg-opacity-90;
+  }
+
+  .btn-accent {
+    @apply btn bg-gbc-yellow text-gbc-black hover:bg-opacity-90;
+  }
+
+  .btn-outline {
+    @apply btn bg-transparent border-2 border-gbc-green text-gbc-green hover:bg-gbc-green hover:text-white;
+  }
+
+  /* Cards */
+  .card-base {
+    @apply bg-white rounded-xl shadow-soft hover:shadow-card transition-shadow duration-300 border border-gray-100;
+  }
+}
