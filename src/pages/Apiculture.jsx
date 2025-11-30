@@ -9,7 +9,7 @@ const Apiculture = () => {
       <Hero 
         title="L'Excellence Apicole" 
         subtitle="L'Or Liquide du Kivu"
-        image="https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=1920&auto=format&fit=crop"
+        image="https://placehold.co/1920x1080/1a472a/ffffff?text=Banniere+Apiculture"
       />
 
       <section className="py-24 bg-white">
@@ -35,8 +35,12 @@ const Apiculture = () => {
             </div>
             <div className="grid grid-cols-2 gap-6 relative">
                <div className="absolute -top-10 -right-10 w-40 h-40 bg-gbc-yellow/10 rounded-full blur-3xl"></div>
-              <img src="https://images.unsplash.com/photo-1587049577047-f23d5608f072?q=80&w=600&auto=format&fit=crop" alt="Ruches" className="rounded-2xl shadow-lg mt-12 relative z-10 w-full h-64 object-cover" />
-              <img src="https://images.unsplash.com/photo-1617870952348-7524ed5d1afd?q=80&w=600&auto=format&fit=crop" alt="Pot de miel" className="rounded-2xl shadow-lg relative z-10 w-full h-64 object-cover" />
+              <div className="relative group rounded-2xl overflow-hidden mt-12 shadow-lg h-64 w-full">
+                 <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Ruches" alt="Ruches" className="relative z-10 w-full h-full object-cover" />
+              </div>
+              <div className="relative group rounded-2xl overflow-hidden shadow-lg h-64 w-full">
+                <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Pot+Miel" alt="Pot de miel" className="relative z-10 w-full h-full object-cover" />
+              </div>
             </div>
           </div>
         </div>

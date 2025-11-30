@@ -2,15 +2,38 @@ import React from 'react';
 import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
 import { motion } from 'framer-motion';
-import { Target, Heart, Globe, TrendingUp } from 'lucide-react';
+import { Target, Heart, Globe, TrendingUp, User, Users } from 'lucide-react';
 
 const About = () => {
+  // Données pour l'Administration
+  const administrationTeam = [
+    { role: "Directeur Général", name: "Nom du Directeur", placeholder: "DG" },
+    { role: "Directeur Financier", name: "Nom du DAF", placeholder: "Finance" },
+    { role: "Secrétaire Administratif", name: "Nom Secrétaire", placeholder: "Admin" },
+    { role: "Resp. Ressources Humaines", name: "Nom RH", placeholder: "RH" },
+    { role: "Resp. Commercial", name: "Nom Commercial", placeholder: "Vente" },
+  ];
+
+  // Données pour les Ouvriers et le Staff Technique
+  const technicalTeam = [
+    { role: "Chef d'Exploitation", name: "Nom du Chef", placeholder: "Chef Exp" },
+    { role: "Responsable Apiculture", name: "Nom Resp.", placeholder: "Api" },
+    { role: "Responsable Agriculture", name: "Nom Resp.", placeholder: "Agri" },
+    { role: "Technicien de Transformation", name: "Nom Tech", placeholder: "Tech 1" },
+    { role: "Technicien de Transformation", name: "Nom Tech", placeholder: "Tech 2" },
+    { role: "Ouvrier Agricole", name: "Nom Ouvrier", placeholder: "Ouvrier 1" },
+    { role: "Ouvrier Agricole", name: "Nom Ouvrier", placeholder: "Ouvrier 2" },
+    { role: "Ouvrier Agricole", name: "Nom Ouvrier", placeholder: "Ouvrier 3" },
+    { role: "Chauffeur / Logistique", name: "Nom Staff", placeholder: "Logistique" },
+    { role: "Sécurité", name: "Nom Staff", placeholder: "Sécurité" },
+  ];
+
   return (
     <>
       <Hero 
         title="Notre Histoire & Vision" 
         subtitle="Enracinés au Congo, Ouverts sur le Monde"
-        image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1920&auto=format&fit=crop"
+        image="https://placehold.co/1920x1080/1a472a/ffffff?text=Image+Hero+A+Propos"
       />
 
       {/* History & Mission */}
@@ -36,7 +59,10 @@ const About = () => {
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-6 mt-12">
-                <img src="https://images.unsplash.com/photo-1527118732049-c88155f2107c?q=80&w=600&auto=format&fit=crop" alt="Champs" className="rounded-2xl shadow-card w-full h-64 object-cover" />
+                <div className="relative overflow-hidden rounded-2xl shadow-card h-64 w-full bg-gray-200 group">
+                  <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Image+Champs" alt="Champs" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 text-white font-bold">Remplacer Image</div>
+                </div>
                 <div className="bg-gbc-green/10 p-6 rounded-2xl">
                    <h4 className="font-bold text-gbc-green mb-2">100% Local</h4>
                    <p className="text-sm text-gray-600">Produit et transformé en RDC</p>
@@ -47,7 +73,10 @@ const About = () => {
                    <h4 className="font-bold text-gbc-blue mb-2">Innovation</h4>
                    <p className="text-sm text-gray-600">Technologies modernes</p>
                 </div>
-                <img src="https://images.unsplash.com/photo-1471193945509-9adadd8d0jd4?q=80&w=600&auto=format&fit=crop" alt="Abeilles" className="rounded-2xl shadow-card w-full h-64 object-cover" />
+                <div className="relative overflow-hidden rounded-2xl shadow-card h-64 w-full bg-gray-200 group">
+                  <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Image+Abeilles" alt="Abeilles" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 text-white font-bold">Remplacer Image</div>
+                </div>
               </div>
             </div>
           </div>
@@ -147,26 +176,66 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Structure */}
+      {/* Team Structure - Administration */}
       <section className="py-24 bg-gbc-gray">
         <div className="container-custom">
-          <SectionTitle title="Notre Équipe de Direction" subtitle="Structure SARLU" center />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-16">
-            {[
-              { role: "Gérant Statutaire", name: "Direction Générale", color: "border-gbc-green" },
-              { role: "Resp. Opérations", name: "Département Technique", color: "border-gbc-blue" },
-              { role: "Resp. Finance", name: "Administration", color: "border-gbc-yellow" },
-              { role: "Coord. Apiculture", name: "Pôle Miel", color: "border-gbc-brown" },
-            ].map((member, idx) => (
-              <div key={idx} className={`bg-white p-8 rounded-2xl text-center shadow-soft hover:shadow-card border-b-4 ${member.color} transition-all duration-300 hover:-translate-y-1`}>
-                <div className="w-24 h-24 bg-gray-100 rounded-full mx-auto mb-6 overflow-hidden border-4 border-white shadow-sm">
-                   <img src={`https://ui-avatars.com/api/?name=${member.role}&background=random&color=fff`} alt={member.role} className="w-full h-full object-cover" />
-                </div>
-                <h4 className="font-bold text-lg text-gbc-black mb-1">{member.name}</h4>
-                <p className="text-sm text-gray-500 font-medium uppercase tracking-wide">{member.role}</p>
+          <SectionTitle title="Organigramme & Équipe" subtitle="Notre Force Humaine" center />
+          
+          {/* Administration Section */}
+          <div className="mb-20">
+            <div className="flex items-center justify-center gap-3 mb-10">
+              <div className="p-2 bg-gbc-blue/10 rounded-full text-gbc-blue">
+                <Users size={24} />
               </div>
-            ))}
+              <h3 className="text-2xl font-bold text-gbc-black">Administration & Direction</h3>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {administrationTeam.map((member, idx) => (
+                <div key={idx} className="bg-white p-6 rounded-2xl text-center shadow-soft hover:shadow-card border-b-4 border-gbc-blue transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden border-4 border-white shadow-sm relative group">
+                     <img 
+                      src={`https://placehold.co/400x400/e2e8f0/1e293b?text=${member.placeholder}`} 
+                      alt={member.role} 
+                      className="w-full h-full object-cover" 
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs">
+                      Modifier
+                    </div>
+                  </div>
+                  <h4 className="font-bold text-lg text-gbc-black mb-1">{member.name}</h4>
+                  <p className="text-sm text-gray-500 font-medium uppercase tracking-wide">{member.role}</p>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* Technical Staff Section */}
+          <div>
+            <div className="flex items-center justify-center gap-3 mb-10">
+              <div className="p-2 bg-gbc-green/10 rounded-full text-gbc-green">
+                <User size={24} />
+              </div>
+              <h3 className="text-2xl font-bold text-gbc-black">Personnel Technique & Ouvriers</h3>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              {technicalTeam.map((member, idx) => (
+                <div key={idx} className="bg-white p-4 rounded-xl text-center shadow-sm hover:shadow-md border border-gray-100 transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-4 overflow-hidden border-2 border-gray-50 relative group">
+                     <img 
+                      src={`https://placehold.co/200x200/f1f5f9/475569?text=${member.placeholder}`} 
+                      alt={member.role} 
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" 
+                    />
+                  </div>
+                  <h4 className="font-bold text-md text-gbc-black mb-1 leading-tight">{member.name}</h4>
+                  <p className="text-xs text-gbc-green font-medium uppercase tracking-wide">{member.role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
     </>

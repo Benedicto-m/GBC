@@ -12,7 +12,7 @@ const Home = () => {
       <Hero 
         title="Cultivons l'Excellence Agricole au Nord-Kivu"
         subtitle="Innovation • Durabilité • Communauté"
-        image="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1920&auto=format&fit=crop"
+        image="https://placehold.co/1920x1080/1a472a/ffffff?text=Banniere+Accueil"
         height="min-h-[85vh]"
       />
 
@@ -44,7 +44,7 @@ const Home = () => {
             <div className="relative group">
               <div className="absolute inset-0 bg-gbc-blue rounded-3xl transform rotate-3 transition-transform group-hover:rotate-1 opacity-10"></div>
               <img 
-                src="https://images.unsplash.com/photo-1595914674686-9323136594d6?q=80&w=800&auto=format&fit=crop" 
+                src="https://placehold.co/800x600/e2e8f0/1e293b?text=Photo+Intro+Agriculteur" 
                 alt="Agriculteur au travail" 
                 className="relative rounded-3xl shadow-card transform -rotate-2 transition-transform duration-500 group-hover:rotate-0 w-full h-auto object-cover"
               />
@@ -75,19 +75,19 @@ const Home = () => {
             <ProductCard 
               title="Apiculture Moderne"
               description="Production de miel de haute qualité, cire et produits dérivés. Nous formons et équipons les apiculteurs locaux pour une production respectueuse des abeilles."
-              image="https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=800&auto=format&fit=crop"
+              image="https://placehold.co/800x600/e2e8f0/1e293b?text=Apiculture+Miel"
               link="/apiculture"
             />
             <ProductCard 
               title="Agriculture Durable"
               description="Cultures vivrières et pérennes (Cacao, Café) gérées selon des pratiques agro-écologiques pour garantir la sécurité alimentaire et des revenus stables."
-              image="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=800&auto=format&fit=crop"
+              image="https://placehold.co/800x600/e2e8f0/1e293b?text=Agriculture+Cacao"
               link="/productions"
             />
             <ProductCard 
               title="Transformation & Valeur"
               description="Unités de transformation locale pour nos produits. Création d'emplois et valorisation des récoltes sur place avant commercialisation."
-              image="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=800&auto=format&fit=crop"
+              image="https://placehold.co/800x600/e2e8f0/1e293b?text=Usine+Transformation"
               link="/transformation"
             />
           </div>
@@ -161,7 +161,7 @@ const Home = () => {
               Contactez-nous
             </Link>
             <Link to="/products" className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-gbc-blue transition-all">
-              Nos Produits
+              Nos Productions
             </Link>
           </div>
         </div>

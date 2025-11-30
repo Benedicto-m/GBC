@@ -8,17 +8,17 @@ const Productions = () => {
     {
       name: "Cacao Premium",
       desc: "Cultivé sous ombrage forestier, notre cacao développe des arômes riches et complexes, typiques du terroir volcanique.",
-      image: "https://images.unsplash.com/photo-1598514936302-6029285743c7?q=80&w=600&auto=format&fit=crop"
+      image: "https://placehold.co/600x400/e2e8f0/1e293b?text=Cacao"
     },
     {
       name: "Café Arabica",
       desc: "Des grains d'altitude récoltés à la main à pleine maturité, offrant une tasse équilibrée aux notes fruitées.",
-      image: "https://images.unsplash.com/photo-1552346989-e069318e20a5?q=80&w=600&auto=format&fit=crop"
+      image: "https://placehold.co/600x400/e2e8f0/1e293b?text=Cafe+Arabica"
     },
     {
       name: "Cultures Vivrières",
       desc: "Maïs, Haricot et Soja produits pour renforcer la sécurité alimentaire locale avec des semences résilientes.",
-      image: "https://images.unsplash.com/photo-1634467524884-897d0af5e08e?q=80&w=600&auto=format&fit=crop"
+      image: "https://placehold.co/600x400/e2e8f0/1e293b?text=Cultures+Vivrieres"
     }
   ];
 
@@ -27,7 +27,7 @@ const Productions = () => {
       <Hero 
         title="Nos Productions Agricoles" 
         subtitle="La richesse de la terre du Kivu"
-        image="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1920&auto=format&fit=crop"
+        image="https://placehold.co/1920x1080/1a472a/ffffff?text=Banniere+Productions"
       />
 
       {/* Intro */}
@@ -53,6 +53,9 @@ const Productions = () => {
                     alt={p.name} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20">
+                     <span className="bg-white/90 text-black px-4 py-2 rounded-lg text-sm font-bold shadow-lg">Modifier Image</span>
+                  </div>
                 </div>
                 <h3 className="text-2xl font-display font-bold text-gbc-black mb-3 group-hover:text-gbc-green transition-colors">{p.name}</h3>
                 <p className="text-gray-500 leading-relaxed text-sm">{p.desc}</p>
