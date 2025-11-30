@@ -47,7 +47,7 @@ const About = () => {
               />
               <div className="space-y-6 text-gray-600 leading-relaxed font-sans text-lg">
                 <p>
-                  Fondée au cœur du Nord-Kivu, GBC SARLU (Green Business Congo) est née d'une conviction profonde : l'agriculture est la clé de la résilience et du développement économique de la RDC.
+                  Fondée au cœur du Nord-Kivu, GBC SARLU (Global BINYAVANGA COMPANY) est née d'une conviction profonde : l'agriculture est la clé de la résilience et du développement économique de la RDC.
                 </p>
                 <p>
                   Face aux défis de notre région, nous avons choisi d'agir. Nous avons structuré une entreprise capable non seulement de produire, mais de transformer et de valoriser les ressources locales. Notre approche intègre l'ensemble de la chaîne de valeur, du petit producteur au consommateur final.
@@ -147,7 +147,7 @@ const About = () => {
                     <TrendingUp size={20} className="text-gbc-green" />
                     Projection Production (Tonnes)
                   </h4>
-                  <div className="flex items-end justify-between h-56 gap-4">
+                  <div className="flex items-end justify-between h-64 gap-4">
                     {[
                       { year: '2024', val: '30%', label: '15T' },
                       { year: '2025', val: '45%', label: '25T' },
@@ -155,16 +155,18 @@ const About = () => {
                       { year: '2027', val: '80%', label: '80T' },
                       { year: '2028', val: '100%', label: '120T' },
                     ].map((bar, idx) => (
-                      <div key={idx} className="flex flex-col items-center gap-3 flex-1 group">
-                        <div className="text-xs font-bold text-gbc-yellow opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">{bar.label}</div>
-                        <motion.div 
-                          initial={{ height: 0 }}
-                          whileInView={{ height: bar.val }}
-                          transition={{ duration: 1, delay: idx * 0.1 }}
-                          className="w-full bg-gradient-to-t from-gbc-blue to-gbc-green rounded-t-lg opacity-70 group-hover:opacity-100 transition-all relative overflow-hidden"
-                        >
-                            <div className="absolute top-0 left-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                        </motion.div>
+                      <div key={idx} className="flex flex-col items-center justify-end h-full gap-3 flex-1 group">
+                        <div className="text-xs font-bold text-gbc-yellow opacity-0 group-hover:opacity-100 transition-opacity mb-1">{bar.label}</div>
+                        <div className="w-full relative flex-1 flex items-end">
+                            <motion.div 
+                            initial={{ height: 0 }}
+                            whileInView={{ height: bar.val }}
+                            transition={{ duration: 1, delay: idx * 0.1 }}
+                            className="w-full bg-gradient-to-t from-gbc-blue to-gbc-green rounded-t-lg opacity-70 group-hover:opacity-100 transition-all relative overflow-hidden"
+                            >
+                                <div className="absolute top-0 left-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                            </motion.div>
+                        </div>
                         <div className="text-xs text-gray-400 font-medium">{bar.year}</div>
                       </div>
                     ))}
