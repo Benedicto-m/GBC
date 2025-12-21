@@ -36,10 +36,10 @@ const Apiculture = () => {
             <div className="grid grid-cols-2 gap-6 relative">
                <div className="absolute -top-10 -right-10 w-40 h-40 bg-gbc-yellow/10 rounded-full blur-3xl"></div>
               <div className="relative group rounded-2xl overflow-hidden mt-12 shadow-lg h-64 w-full">
-                 <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Ruches" alt="Ruches" className="relative z-10 w-full h-full object-cover" />
+                 <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Ruches" alt="Ruches" className="relative z-10 w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="relative group rounded-2xl overflow-hidden shadow-lg h-64 w-full">
-                <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Pot+Miel" alt="Pot de miel" className="relative z-10 w-full h-full object-cover" />
+                <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Pot+Miel" alt="Pot de miel" className="relative z-10 w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
           </div>

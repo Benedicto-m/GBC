@@ -3,19 +3,19 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logo from './img/logo.webp';
 
+const NAVIGATION = [
+  { name: 'Accueil', href: '/' },
+  { name: 'À Propos', href: '/about' },
+  { name: 'Productions', href: '/productions' },
+  { name: 'Apiculture', href: '/apiculture' },
+  { name: 'Transformation', href: '/transformation' },
+  { name: 'Impact', href: '/impact' },
+  { name: 'Contact', href: '/contact' },
+];
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-
-  const navigation = [
-    { name: 'Accueil', href: '/' },
-    { name: 'À Propos', href: '/about' },
-    { name: 'Productions', href: '/productions' },
-    { name: 'Apiculture', href: '/apiculture' },
-    { name: 'Transformation', href: '/transformation' },
-    { name: 'Impact', href: '/impact' },
-    { name: 'Contact', href: '/contact' },
-  ];
 
   const isActive = (path) => location.pathname === path;
 
@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
-              <img src={logo} alt="GBC Logo" className="h-12 w-auto object-contain" />
+              <img src={logo} alt="GBC Logo" className="h-12 w-auto object-contain" loading="lazy" />
                 
                  <div className="flex flex-col">
                 <span className="font-display font-bold text-2xl text-gbc-black tracking-tight leading-none group-hover:text-gbc-green transition-colors">
@@ -40,7 +40,7 @@ const Navbar = () => {
           
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-1">
-            {navigation.map((item) => (
+            {NAVIGATION.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
@@ -78,7 +78,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
           <div className="px-4 pt-4 pb-6 space-y-2">
-            {navigation.map((item) => (
+            {NAVIGATION.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}

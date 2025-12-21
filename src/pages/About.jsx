@@ -60,7 +60,7 @@ const About = () => {
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-6 mt-12">
                 <div className="relative overflow-hidden rounded-2xl shadow-card h-64 w-full bg-gray-200 group">
-                  <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Image+Champs" alt="Champs" className="w-full h-full object-cover" />
+                  <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Image+Champs" alt="Champs" className="w-full h-full object-cover" loading="lazy" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 text-white font-bold">Remplacer Image</div>
                 </div>
                 <div className="bg-gbc-green/10 p-6 rounded-2xl">
@@ -74,7 +74,7 @@ const About = () => {
                    <p className="text-sm text-gray-600">Technologies modernes</p>
                 </div>
                 <div className="relative overflow-hidden rounded-2xl shadow-card h-64 w-full bg-gray-200 group">
-                  <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Image+Abeilles" alt="Abeilles" className="w-full h-full object-cover" />
+                  <img src="https://placehold.co/600x800/e2e8f0/1e293b?text=Image+Abeilles" alt="Abeilles" className="w-full h-full object-cover" loading="lazy" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 text-white font-bold">Remplacer Image</div>
                 </div>
               </div>
@@ -200,6 +200,7 @@ const About = () => {
                       src={`https://placehold.co/400x400/e2e8f0/1e293b?text=${member.placeholder}`} 
                       alt={member.role} 
                       className="w-full h-full object-cover" 
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs">
                       Modifier
@@ -229,6 +230,7 @@ const About = () => {
                       src={`https://placehold.co/200x200/f1f5f9/475569?text=${member.placeholder}`} 
                       alt={member.role} 
                       className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" 
+                      loading="lazy"
                     />
                   </div>
                   <h4 className="font-bold text-md text-gbc-black mb-1 leading-tight">{member.name}</h4>

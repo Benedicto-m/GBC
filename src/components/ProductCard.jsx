@@ -39,4 +39,4 @@ const ProductCard = ({ title, description, image, link }) => {
   );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);
