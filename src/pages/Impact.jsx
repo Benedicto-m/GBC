@@ -63,8 +63,8 @@ const Impact = () => {
               "Depuis que je travaille avec GBC, je ne vends plus mon miel au hasard. J'ai un partenaire fiable qui valorise mon travail et me forme pour produire mieux."
             </blockquote>
             <cite className="not-italic flex flex-col items-center gap-2">
-                <span className="font-bold text-gbc-yellow text-lg">Papa Masika</span>
-                <span className="text-sm text-gray-500 uppercase tracking-widest font-bold">Apiculteur à Lubero</span>
+                <span className="font-bold text-gbc-yellow text-lg">Papa X</span>
+                <span className="text-sm text-gray-500 uppercase tracking-widest font-bold">Apiculteur à Rutshuru</span>
             </cite>
           </div>
         </div>
