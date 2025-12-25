@@ -64,13 +64,13 @@ const Footer = () => {
                 <div className="p-2 bg-white/5 rounded-lg text-gbc-green">
                    <Phone size={18} />
                 </div>
-                <span>+243 990 146 584</span>
+                <a href="tel:+243985727861" className="hover:text-gbc-green transition-colors">+243985727861</a>
               </li>
               <li className="flex items-center gap-4">
                 <div className="p-2 bg-white/5 rounded-lg text-gbc-yellow">
                    <Mail size={18} />
                 </div>
-                <span>contact@gbc-sarlu.cd</span>
+                <a href="mailto:contact@gbc-sarlu.cd" className="hover:text-gbc-green transition-colors">contact@gbc-sarlu.cd</a>
               </li>
             </ul>
           </div>

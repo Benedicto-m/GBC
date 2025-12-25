@@ -261,6 +261,7 @@ export const fr = {
         marketing: "Direction Marketing",
       },
       categories: {
+        all: "Tous",
         direction: "Direction",
         administration: "Administration",
         commercial: "Commercial",

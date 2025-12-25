@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Target, Heart, Globe, TrendingUp, User, Users, ChevronDown, Sprout, Eye, Layers, Building2, ArrowRight, CheckCircle2, Shield, Settings, Briefcase, Lightbulb, BarChart3 } from 'lucide-react';
+import { Target, Heart, Globe, TrendingUp, User, Users, ChevronDown, Sprout, Eye, Layers, Building2, ArrowRight, CheckCircle2, Shield, Settings, Briefcase, Lightbulb, BarChart3, Wrench, Truck, Lock } from 'lucide-react';
 import { banniereAPropos, imageChamps, imageAbeilles, getTeamImage } from '../components/img';
 import mukizaBinyavanga from '../components/img/team/Mukiza-binyavanga-agustin.jpg';
 import mirindiBenedicto from '../components/img/team/mirindi-benedicto.png';
@@ -174,24 +174,55 @@ const About = () => {
     { id: 405, role: t.about.team.roles.maintenance, name: "Nom Maintenance", category: t.about.team.categories.logistics },
   ];
 
-  // État pour le chargement progressif
-  const [visibleCount, setVisibleCount] = useState(12); // Afficher 12 membres initialement
-  const itemsPerPage = 12; // Nombre d'éléments à charger à chaque fois
+  // État pour les onglets de catégories
+  const [activeCategory, setActiveCategory] = useState('all'); // 'all', 'supervision', 'technique', 'farmWorkers', 'logistics', 'security'
+  const [visibleCounts, setVisibleCounts] = useState({
+    all: 12,
+    supervision: 12,
+    technique: 12,
+    farmWorkers: 12,
+    logistics: 12,
+    security: 12
+  });
+  const itemsPerPage = 12;
 
-  // Filtrer les membres visibles
-  const visibleTeam = technicalTeam.slice(0, visibleCount);
-  const hasMore = visibleCount < technicalTeam.length;
-  const hasLess = visibleCount > itemsPerPage;
+  // Filtrer les membres par catégorie
+  const getFilteredTeam = (category) => {
+    if (category === 'all') return technicalTeam;
+    return technicalTeam.filter(member => member.category === category);
+  };
+
+  const filteredTeam = getFilteredTeam(activeCategory);
+  const currentVisibleCount = visibleCounts[activeCategory] || 12;
+  const visibleTeam = filteredTeam.slice(0, currentVisibleCount);
+  const hasMore = currentVisibleCount < filteredTeam.length;
+  const hasLess = currentVisibleCount > itemsPerPage;
 
   // Fonction pour charger plus de membres
   const loadMore = () => {
-    setVisibleCount(prev => Math.min(prev + itemsPerPage, technicalTeam.length));
+    setVisibleCounts(prev => ({
+      ...prev,
+      [activeCategory]: Math.min((prev[activeCategory] || itemsPerPage) + itemsPerPage, filteredTeam.length)
+    }));
   };
 
   // Fonction pour charger moins de membres
   const loadLess = () => {
-    setVisibleCount(prev => Math.max(itemsPerPage, prev - itemsPerPage));
+    setVisibleCounts(prev => ({
+      ...prev,
+      [activeCategory]: Math.max(itemsPerPage, (prev[activeCategory] || itemsPerPage) - itemsPerPage)
+    }));
   };
+
+  // Catégories disponibles avec leurs labels
+  const categories = [
+    { id: 'all', label: t.about.team.categories.all, icon: Users, count: technicalTeam.length },
+    { id: 'supervision', label: t.about.team.categories.supervision, icon: Settings, count: getFilteredTeam('supervision').length },
+    { id: 'technique', label: t.about.team.categories.technique, icon: Wrench, count: getFilteredTeam('technique').length },
+    { id: 'farmWorkers', label: t.about.team.categories.farmWorkers, icon: Sprout, count: getFilteredTeam('farmWorkers').length },
+    { id: 'logistics', label: t.about.team.categories.logistics, icon: Truck, count: getFilteredTeam('logistics').length },
+    { id: 'security', label: t.about.team.categories.security, icon: Lock, count: getFilteredTeam('security').length },
+  ];
 
   return (
     <>
@@ -725,78 +756,123 @@ const About = () => {
             </div>
           </div>
 
-          {/* Technical Staff Section - Sans catégories avec chargement progressif */}
+          {/* Technical Staff Section - Avec onglets par catégorie */}
           <div>
-            <div className="flex items-center justify-center gap-3 mb-10">
+            <div className="flex items-center justify-center gap-3 mb-8">
               <div className="p-2 bg-gbc-green/10 rounded-full text-gbc-green">
                 <User size={24} />
               </div>
               <h3 className="text-2xl font-bold text-gbc-black">{t.about.team.technical}</h3>
             </div>
 
-            {/* Grille des membres avec animations */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-8">
-              {visibleTeam.map((member, idx) => {
-                const memberImage = getTeamImage(member.role, member.category, member.id);
+            {/* Onglets de catégories */}
+            <div className="flex flex-wrap justify-center gap-3 mb-10">
+              {categories.map((cat) => {
+                const IconComponent = cat.icon;
+                const isActive = activeCategory === cat.id;
                 return (
-                  <motion.div
-                    key={member.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.02, duration: 0.3 }}
-                    className="bg-white p-4 rounded-xl text-center shadow-sm hover:shadow-lg border border-gray-100 transition-all duration-300 hover:-translate-y-2 group"
+                  <motion.button
+                    key={cat.id}
+                    onClick={() => {
+                      setActiveCategory(cat.id);
+                      // Réinitialiser le compteur pour cette catégorie si nécessaire
+                      if (!visibleCounts[cat.id]) {
+                        setVisibleCounts(prev => ({ ...prev, [cat.id]: itemsPerPage }));
+                      }
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                      isActive
+                        ? 'bg-gbc-green text-white shadow-lg'
+                        : 'bg-white text-gbc-black border-2 border-gray-200 hover:border-gbc-green hover:bg-gbc-green/5'
+                    }`}
                   >
-                    <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-4 overflow-hidden border-2 border-gray-50 relative group-hover:border-gbc-green transition-colors">
-                      <img 
-                        src={memberImage} 
-                        alt={member.role} 
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" 
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gbc-green/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="text-xs text-white font-bold">{t.about.team.see}</span>
-                      </div>
-                    </div>
-                    <h4 className="font-bold text-md text-gbc-black mb-1 leading-tight group-hover:text-gbc-green transition-colors">
-                      {member.name}
-                    </h4>
-                    <p className="text-xs text-gbc-green font-medium uppercase tracking-wide">{member.role}</p>
-                  </motion.div>
+                    <IconComponent size={18} />
+                    <span>{cat.label}</span>
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
+                      isActive ? 'bg-white/20 text-white' : 'bg-gbc-green/10 text-gbc-green'
+                    }`}>
+                      {cat.count}
+                    </span>
+                  </motion.button>
                 );
               })}
             </div>
 
-            {/* Boutons Charger plus / Charger moins */}
-            <div className="text-center mt-8">
-              <div className="flex items-center justify-center gap-4">
-                {hasLess && (
-                  <motion.button
-                    onClick={loadLess}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-300 transition-colors shadow-md hover:shadow-lg flex items-center gap-2"
-                  >
-                    <ChevronDown size={18} className="rotate-180" />
-                    <span>{t.about.team.loadLess}</span>
-                  </motion.button>
+            {/* Grille des membres avec animations */}
+            {filteredTeam.length > 0 ? (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-8">
+                  {visibleTeam.map((member, idx) => {
+                    const memberImage = getTeamImage(member.role, member.category, member.id);
+                    return (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.02, duration: 0.3 }}
+                        className="bg-white p-4 rounded-xl text-center shadow-sm hover:shadow-lg border border-gray-100 transition-all duration-300 hover:-translate-y-2 group"
+                      >
+                        <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-4 overflow-hidden border-2 border-gray-50 relative group-hover:border-gbc-green transition-colors">
+                          <img 
+                            src={memberImage} 
+                            alt={member.role} 
+                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" 
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-gbc-green/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span className="text-xs text-white font-bold">{t.about.team.see}</span>
+                          </div>
+                        </div>
+                        <h4 className="font-bold text-md text-gbc-black mb-1 leading-tight group-hover:text-gbc-green transition-colors">
+                          {member.name}
+                        </h4>
+                        <p className="text-xs text-gbc-green font-medium uppercase tracking-wide">{member.role}</p>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* Boutons Charger plus / Charger moins */}
+                {(hasMore || hasLess) && (
+                  <div className="text-center mt-8">
+                    <div className="flex items-center justify-center gap-4">
+                      {hasLess && (
+                        <motion.button
+                          onClick={loadLess}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="px-6 py-3 bg-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-300 transition-colors shadow-md hover:shadow-lg flex items-center gap-2"
+                        >
+                          <ChevronDown size={18} className="rotate-180" />
+                          <span>{t.about.team.loadLess}</span>
+                        </motion.button>
+                      )}
+                      {hasMore && (
+                        <motion.button
+                          onClick={loadMore}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="px-6 py-3 bg-gbc-green text-white font-bold rounded-xl hover:bg-gbc-blue transition-colors shadow-lg hover:shadow-xl flex items-center gap-2"
+                        >
+                          <span>{t.about.team.loadMore}</span>
+                          <ChevronDown size={18} className="animate-bounce" />
+                        </motion.button>
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-500 mt-3">
+                      {t.about.team.showing} {currentVisibleCount} / {filteredTeam.length} {t.about.team.members}
+                    </p>
+                  </div>
                 )}
-                {hasMore && (
-                  <motion.button
-                    onClick={loadMore}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-gbc-green text-white font-bold rounded-xl hover:bg-gbc-blue transition-colors shadow-lg hover:shadow-xl flex items-center gap-2"
-                  >
-                    <span>{t.about.team.loadMore}</span>
-                    <ChevronDown size={18} className="animate-bounce" />
-                  </motion.button>
-                )}
+              </>
+            ) : (
+              <div className="text-center py-12 bg-gray-50 rounded-2xl">
+                <p className="text-gray-500">{t.about.team.noMembers}</p>
               </div>
-              <p className="text-sm text-gray-500 mt-3">
-                {t.about.team.showing} {visibleCount} / {technicalTeam.length} {t.about.team.members}
-              </p>
-            </div>
+            )}
           </div>
 
         </div>

@@ -257,6 +257,7 @@ export const en = {
         marketing: "Marketing Management",
       },
       categories: {
+        all: "All",
         direction: "Management",
         administration: "Administration",
         commercial: "Commercial",
