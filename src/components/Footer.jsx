@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, ArrowRight, MessageCircle } from 'lucide-react';
 import logo from './img/logo.webp';
 import { useLanguage } from '../context/LanguageContext';
 import { fr } from '../translations/fr';
@@ -65,6 +65,19 @@ const Footer = () => {
                    <Phone size={18} />
                 </div>
                 <a href="tel:+243985727861" className="hover:text-gbc-green transition-colors">+243985727861</a>
+              </li>
+              <li className="flex items-center gap-4">
+                <div className="p-2 bg-white/5 rounded-lg text-green-500">
+                   <MessageCircle size={18} />
+                </div>
+                <a 
+                  href="https://wa.me/243985727861" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-gbc-green transition-colors"
+                >
+                  WhatsApp
+                </a>
               </li>
               <li className="flex items-center gap-4">
                 <div className="p-2 bg-white/5 rounded-lg text-gbc-yellow">
