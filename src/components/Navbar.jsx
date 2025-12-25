@@ -38,8 +38,8 @@ const Navbar = () => {
                 <span className="font-display font-bold text-2xl text-gbc-black tracking-tight leading-none group-hover:text-gbc-green transition-colors">
                   GBC SARLU
                 </span>
-                <span className="text-[10px] font-medium text-gbc-blue tracking-widest uppercase mt-0.5">
-                  {t.common.tagline}
+                <span className="text-[10px] font-medium text-gbc-blue tracking-wide mt-0.5 leading-tight">
+                  {t.home.hero.subtitle}
                 </span>
               </div>
             </Link>

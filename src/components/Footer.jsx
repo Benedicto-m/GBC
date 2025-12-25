@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, ArrowRight, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import logo from './img/logo.webp';
 import { useLanguage } from '../context/LanguageContext';
 import { fr } from '../translations/fr';
@@ -27,14 +28,14 @@ const Footer = () => {
               {t.footer.description}
             </p>
             <div className="flex space-x-3">
-              <a href="#" className="bg-white/5 p-3 rounded-xl hover:bg-gbc-blue hover:text-white transition-all hover:-translate-y-1">
-                <Facebook size={18} />
+              <a href="#" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-xl hover:bg-[#1877F2] hover:text-white transition-all hover:-translate-y-1">
+                <FaFacebook size={18} />
               </a>
-              <a href="#" className="bg-white/5 p-3 rounded-xl hover:bg-gbc-green hover:text-white transition-all hover:-translate-y-1">
-                <Instagram size={18} />
+              <a href="#" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 hover:text-white transition-all hover:-translate-y-1">
+                <FaInstagram size={18} />
               </a>
-              <a href="#" className="bg-white/5 p-3 rounded-xl hover:bg-gbc-blue hover:text-white transition-all hover:-translate-y-1">
-                <Linkedin size={18} />
+              <a href="#" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-xl hover:bg-[#0077B5] hover:text-white transition-all hover:-translate-y-1">
+                <FaLinkedin size={18} />
               </a>
             </div>
           </div>
@@ -67,14 +68,14 @@ const Footer = () => {
                 <a href="tel:+243985727861" className="hover:text-gbc-green transition-colors">+243985727861</a>
               </li>
               <li className="flex items-center gap-4">
-                <div className="p-2 bg-white/5 rounded-lg text-green-500">
-                   <MessageCircle size={18} />
+                <div className="p-2 bg-white/5 rounded-lg text-[#25D366]">
+                   <FaWhatsapp size={18} />
                 </div>
                 <a 
                   href="https://wa.me/243985727861" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-gbc-green transition-colors"
+                  className="hover:text-[#25D366] transition-colors"
                 >
                   WhatsApp
                 </a>

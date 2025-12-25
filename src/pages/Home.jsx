@@ -18,7 +18,6 @@ const Home = () => {
     <>
       <Hero 
         title={t.home.hero.title}
-        subtitle={t.home.hero.subtitle}
         image={banniereAccueil}
         height="min-h-[50vh]"
       />

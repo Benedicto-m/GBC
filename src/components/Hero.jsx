@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Hero = ({ title, subtitle, image, height = "min-h-[50vh]" }) => {
+const Hero = ({ title, image, height = "min-h-[50vh]" }) => {
   return (
     <div className={`relative w-full ${height} flex items-center justify-center overflow-hidden`}>
       {/* Background Image - Using img tag for better quality control and dimensions */}
@@ -19,22 +19,10 @@ const Hero = ({ title, subtitle, image, height = "min-h-[50vh]" }) => {
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 pt-20">
         <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <div className="h-1 w-12 bg-gbc-yellow rounded-full"></div>
-            <span className="text-gbc-yellow font-bold tracking-widest uppercase text-sm font-sans">
-              {subtitle}
-            </span>
-          </motion.div>
-          
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6 }}
             className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight drop-shadow-lg"
           >
             {title}
@@ -44,7 +32,7 @@ const Hero = ({ title, subtitle, image, height = "min-h-[50vh]" }) => {
           <motion.div 
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
             className="h-2 w-24 bg-gradient-to-r from-gbc-green to-gbc-blue rounded-full origin-left"
           />
         </div>
