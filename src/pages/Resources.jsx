@@ -2,30 +2,38 @@ import React from 'react';
 import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
 import { FileText, Download, BookOpen } from 'lucide-react';
+import { banniereResources } from '../components/img';
+import { useLanguage } from '../context/LanguageContext';
+import { fr } from '../translations/fr';
+import { en } from '../translations/en';
 
 const Resources = () => {
+  const { language } = useLanguage();
+  const translations = { fr, en };
+  const t = translations[language];
+
   const resources = [
     {
-      title: "Catalogue Produits 2024",
-      type: "PDF",
-      size: "2.4 MB",
-      desc: "Découvrez notre gamme complète de miels, cafés et produits dérivés avec tarifs pro.",
+      title: t.resources.items.catalog.title,
+      type: t.resources.items.catalog.type,
+      size: t.resources.items.catalog.size,
+      desc: t.resources.items.catalog.desc,
       icon: BookOpen,
       color: "bg-gbc-blue"
     },
     {
-      title: "Rapport d'Impact Annuel",
-      type: "PDF",
-      size: "5.1 MB",
-      desc: "Analyse détaillée de nos retombées sociales, économiques et environnementales au Nord-Kivu.",
+      title: t.resources.items.impact.title,
+      type: t.resources.items.impact.type,
+      size: t.resources.items.impact.size,
+      desc: t.resources.items.impact.desc,
       icon: FileText,
       color: "bg-gbc-green"
     },
     {
-      title: "Guide de l'Apiculteur Débutant",
-      type: "PDF",
-      size: "1.8 MB",
-      desc: "Ressource technique gratuite pour nos partenaires souhaitant se lancer dans l'apiculture.",
+      title: t.resources.items.guide.title,
+      type: t.resources.items.guide.type,
+      size: t.resources.items.guide.size,
+      desc: t.resources.items.guide.desc,
       icon: FileText,
       color: "bg-gbc-yellow"
     }
@@ -34,9 +42,9 @@ const Resources = () => {
   return (
     <>
       <Hero 
-        title="Ressources & Documentation" 
-        subtitle="S'informer et Apprendre"
-        image="https://images.unsplash.com/photo-1456324854829-25bf18add190?q=80&w=1920&auto=format&fit=crop"
+        title={t.resources.hero.title} 
+        subtitle={t.resources.hero.subtitle}
+        image={banniereResources}
       />
 
       <section className="py-24 bg-white">
@@ -54,7 +62,7 @@ const Resources = () => {
                 <p className="text-sm text-gray-500 mb-8 leading-relaxed">{res.desc}</p>
                 <button className="flex items-center text-sm font-bold text-gbc-black group-hover:text-gbc-blue transition-colors uppercase tracking-wide">
                   <Download size={18} className="mr-2" />
-                  Télécharger <span className="text-gray-400 ml-1 font-normal normal-case">({res.size})</span>
+                  {t.resources.download} <span className="text-gray-400 ml-1 font-normal normal-case">({res.size})</span>
                 </button>
               </div>
             ))}

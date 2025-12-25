@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import logo from './img/logo.webp';
-
-const NAVIGATION = [
-  { name: 'Accueil', href: '/' },
-  { name: 'À Propos', href: '/about' },
-  { name: 'Productions', href: '/productions' },
-  { name: 'Apiculture', href: '/apiculture' },
-  { name: 'Transformation', href: '/transformation' },
-  { name: 'Impact', href: '/impact' },
-  { name: 'Contact', href: '/contact' },
-];
+import { Menu, X, Languages } from 'lucide-react';
+import { logo } from './img';
+import { useLanguage } from '../context/LanguageContext';
+import { fr } from '../translations/fr';
+import { en } from '../translations/en';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { language, toggleLanguage } = useLanguage();
+  
+  const translations = { fr, en };
+  const t = translations[language];
+
+  const NAVIGATION = [
+    { name: t.nav.home, href: '/' },
+    { name: t.nav.about, href: '/about' },
+    { name: t.nav.productions, href: '/productions' },
+    { name: t.nav.apiculture, href: '/apiculture' },
+    { name: t.nav.transformation, href: '/transformation' },
+    { name: t.nav.impact, href: '/impact' },
+    { name: t.nav.contact, href: '/contact' },
+  ];
 
   const isActive = (path) => location.pathname === path;
 
@@ -32,7 +39,7 @@ const Navbar = () => {
                   GBC SARLU
                 </span>
                 <span className="text-[10px] font-medium text-gbc-blue tracking-widest uppercase mt-0.5">
-                  Agribusiness & Innovation
+                  {t.common.tagline}
                 </span>
               </div>
             </Link>
@@ -42,7 +49,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center space-x-1">
             {NAVIGATION.map((item) => (
               <Link
-                key={item.name}
+                key={item.href}
                 to={item.href}
                 className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
                   isActive(item.href)
@@ -53,21 +60,40 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <Link 
-              to="/contact"
-              className="ml-6 px-6 py-2.5 bg-gbc-blue text-white rounded-xl text-sm font-bold hover:bg-gbc-green transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-300"
+            {/* Sélecteur de langue */}
+            <button
+              onClick={toggleLanguage}
+              className="ml-4 flex items-center gap-2 px-4 py-2 bg-gbc-gray hover:bg-gbc-green/10 rounded-xl transition-all duration-300 border border-gray-200 hover:border-gbc-green group"
+              aria-label={t.common.changeLanguage}
             >
-              Rejoindre
-            </Link>
+              <Languages size={18} className="text-gbc-green group-hover:scale-110 transition-transform" />
+              <span className="font-semibold text-gbc-black text-sm">
+                {language === 'fr' ? 'FR' : 'EN'}
+              </span>
+              <span className="text-gray-400">/</span>
+              <span className={`font-semibold text-sm ${language === 'fr' ? 'text-gray-400' : 'text-gbc-green'}`}>
+                {language === 'fr' ? 'EN' : 'FR'}
+              </span>
+            </button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex items-center lg:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center gap-1 px-3 py-2 bg-gbc-gray hover:bg-gbc-green/10 rounded-xl transition-all duration-300 border border-gray-200 hover:border-gbc-green"
+              aria-label={t.common.changeLanguage}
+            >
+              <Languages size={18} className="text-gbc-green" />
+              <span className="font-semibold text-gbc-black text-xs">
+                {language === 'fr' ? 'FR' : 'EN'}
+              </span>
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-xl text-gray-400 hover:text-gbc-green hover:bg-gray-100 focus:outline-none transition-colors"
             >
-              <span className="sr-only">Ouvrir le menu</span>
+              <span className="sr-only">{t.common.openMenu}</span>
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
@@ -80,7 +106,7 @@ const Navbar = () => {
           <div className="px-4 pt-4 pb-6 space-y-2">
             {NAVIGATION.map((item) => (
               <Link
-                key={item.name}
+                key={item.href}
                 to={item.href}
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 rounded-xl text-base font-semibold ${
@@ -92,13 +118,6 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <Link
-              to="/contact"
-              onClick={() => setIsOpen(false)}
-              className="block w-full text-center mt-4 px-4 py-3 bg-gbc-blue text-white rounded-xl font-bold hover:bg-gbc-green transition-colors"
-            >
-              Nous Rejoindre
-            </Link>
           </div>
         </div>
       )}

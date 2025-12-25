@@ -3,17 +3,24 @@ import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
 import ProductCard from '../components/ProductCard';
 import { motion } from 'framer-motion';
-import { Users, Sprout, TrendingUp, Award, ArrowRight } from 'lucide-react';
+import { Users, Sprout, TrendingUp, Award, ArrowRight, Banana, TreePine, Carrot, Flame, Cherry, Apple } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
+import { fr } from '../translations/fr';
+import { en } from '../translations/en';
+import { banniereAccueil, photoIntroAgriculteur, agricultureCacao, apicultureMiel } from '../components/img';
 
 const Home = () => {
+  const { language } = useLanguage();
+  const translations = { fr, en };
+  const t = translations[language];
   return (
     <>
       <Hero 
-        title="Cultivons l'Excellence Agricole au Nord-Kivu"
-        subtitle="Innovation • Durabilité • Communauté"
-        image="https://placehold.co/1920x1080/1a472a/ffffff?text=Banniere+Accueil"
-        height="min-h-[85vh]"
+        title={t.home.hero.title}
+        subtitle={t.home.hero.subtitle}
+        image={banniereAccueil}
+        height="min-h-[50vh]"
       />
 
       {/* Intro Section - Clean White */}
@@ -25,26 +32,31 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <SectionTitle 
-                title="GBC SARLU : Au service de la terre et des hommes"
-                subtitle="Notre Mission"
+                title={t.home.mission.title}
+                subtitle={t.home.mission.subtitle}
               />
+              <p className="text-lg text-gray-500 mb-6 leading-relaxed font-sans">
+                <strong className="text-gbc-black">Global Binyavanga Company (GBC SARLU)</strong> {t.home.mission.text1}
+              </p>
+              <p className="text-lg text-gray-500 mb-6 leading-relaxed font-sans">
+                {t.home.mission.text2}
+              </p>
               <p className="text-lg text-gray-500 mb-8 leading-relaxed font-sans">
-                GBC SARLU est une entreprise agro-pastorale leader basée au Nord-Kivu, dédiée à la transformation durable de notre potentiel agricole. 
-                Nous combinons savoir-faire traditionnel et technologies modernes pour produire une alimentation de qualité tout en préservant notre biodiversité unique.
+                {t.home.mission.text3}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/about" className="btn-primary shadow-lg hover:shadow-xl">
-                  Découvrir notre vision
+                  {t.home.mission.discoverVision}
                 </Link>
                 <Link to="/productions" className="btn-outline">
-                  Nos Productions
+                  {t.home.mission.ourProductions}
                 </Link>
               </div>
             </div>
             <div className="relative group">
               <div className="absolute inset-0 bg-gbc-blue rounded-3xl transform rotate-3 transition-transform group-hover:rotate-1 opacity-10"></div>
               <img 
-                src="https://placehold.co/800x600/e2e8f0/1e293b?text=Photo+Intro+Agriculteur" 
+                src={photoIntroAgriculteur} 
                 alt="Agriculteur au travail" 
                 className="relative rounded-3xl shadow-card transform -rotate-2 transition-transform duration-500 group-hover:rotate-0 w-full h-auto object-cover"
               />
@@ -53,9 +65,9 @@ const Home = () => {
                   <div className="p-2 bg-gbc-yellow/20 rounded-lg text-gbc-yellow">
                     <Award size={24} />
                   </div>
-                  <span className="font-bold text-gbc-black">Excellence Certifiée</span>
+                  <span className="font-bold text-gbc-black">{t.home.mission.certifiedExcellence}</span>
                 </div>
-                <p className="text-xs text-gray-500">Engagés pour une qualité supérieure et durable.</p>
+                <p className="text-xs text-gray-500">{t.home.mission.qualityCommitment}</p>
               </div>
             </div>
           </div>
@@ -66,30 +78,81 @@ const Home = () => {
       <section className="py-24 bg-gbc-gray">
         <div className="container-custom">
           <SectionTitle 
-            title="Nos Piliers d'Excellence" 
-            subtitle="Ce que nous faisons" 
+            title={t.home.sectors.title} 
+            subtitle={t.home.sectors.subtitle} 
             center 
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12 text-lg font-sans">
+            {t.home.sectors.intro}
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-w-4xl mx-auto">
             <ProductCard 
-              title="Apiculture Moderne"
-              description="Production de miel de haute qualité, cire et produits dérivés. Nous formons et équipons les apiculteurs locaux pour une production respectueuse des abeilles."
-              image="https://placehold.co/800x600/e2e8f0/1e293b?text=Apiculture+Miel"
-              link="/apiculture"
-            />
-            <ProductCard 
-              title="Agriculture Durable"
-              description="Cultures vivrières et pérennes (Cacao, Café) gérées selon des pratiques agro-écologiques pour garantir la sécurité alimentaire et des revenus stables."
-              image="https://placehold.co/800x600/e2e8f0/1e293b?text=Agriculture+Cacao"
+              title={t.home.sectors.agriculture.title}
+              description={t.home.sectors.agriculture.description}
+              image={agricultureCacao}
               link="/productions"
             />
             <ProductCard 
-              title="Transformation & Valeur"
-              description="Unités de transformation locale pour nos produits. Création d'emplois et valorisation des récoltes sur place avant commercialisation."
-              image="https://placehold.co/800x600/e2e8f0/1e293b?text=Usine+Transformation"
-              link="/transformation"
+              title={t.home.sectors.apiculture.title}
+              description={t.home.sectors.apiculture.description}
+              image={apicultureMiel}
+              link="/apiculture"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Cultures Actuelles - Détails */}
+      <section className="py-24 bg-white">
+        <div className="container-custom">
+          <SectionTitle 
+            title={t.home.cultures.title} 
+            subtitle={t.home.cultures.subtitle} 
+            center 
+          />
+          
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12 text-lg font-sans">
+            {t.home.cultures.intro}
+          </p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
+            {[
+              { name: t.home.cultures.plantains, icon: Banana, color: "text-yellow-500" },
+              { name: t.home.cultures.cocoa, icon: TreePine, color: "text-amber-700" },
+              { name: t.home.cultures.squash, icon: Carrot, color: "text-orange-500" },
+              { name: t.home.cultures.pepper, icon: Flame, color: "text-red-500" },
+              { name: t.home.cultures.plums, icon: Cherry, color: "text-purple-500" },
+              { name: t.home.cultures.passionfruit, icon: Apple, color: "text-green-500" }
+            ].map((culture, idx) => {
+              const IconComponent = culture.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1, duration: 0.4 }}
+                  className="bg-gbc-gray rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group border border-gray-100 hover:border-gbc-green"
+                >
+                  <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className={`w-16 h-16 rounded-full bg-white flex items-center justify-center ${culture.color} group-hover:bg-gbc-green/10 transition-colors`}>
+                      <IconComponent size={32} className={culture.color} />
+                    </div>
+                  </div>
+                  <h4 className="font-bold text-gbc-black text-sm md:text-base group-hover:text-gbc-green transition-colors">
+                    {culture.name}
+                  </h4>
+                </motion.div>
+              );
+            })}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <p className="text-gray-500 text-sm font-sans max-w-2xl mx-auto">
+              {t.home.cultures.practices}
+            </p>
           </div>
         </div>
       </section>
@@ -108,8 +171,8 @@ const Home = () => {
               className="p-4"
             >
               <Users size={48} className="mx-auto text-gbc-green mb-6 stroke-[1.5]" />
-              <div className="text-4xl lg:text-5xl font-bold font-display mb-2">500+</div>
-              <div className="text-gray-400 text-sm font-medium tracking-wide uppercase">Agriculteurs</div>
+              <div className="text-4xl lg:text-5xl font-bold font-display mb-2">40</div>
+              <div className="text-gray-400 text-sm font-medium tracking-wide uppercase">{t.home.stats.farmers}</div>
             </motion.div>
             <motion.div 
               whileInView={{ scale: [0.9, 1] }} 
@@ -118,8 +181,8 @@ const Home = () => {
               className="p-4"
             >
               <Sprout size={48} className="mx-auto text-gbc-yellow mb-6 stroke-[1.5]" />
-              <div className="text-4xl lg:text-5xl font-bold font-display mb-2">120ha</div>
-              <div className="text-gray-400 text-sm font-medium tracking-wide uppercase">Terres Cultivées</div>
+              <div className="text-4xl lg:text-5xl font-bold font-display mb-2">6ha</div>
+              <div className="text-gray-400 text-sm font-medium tracking-wide uppercase">{t.home.stats.cultivated}</div>
             </motion.div>
             <motion.div 
               whileInView={{ scale: [0.9, 1] }} 
@@ -129,7 +192,7 @@ const Home = () => {
             >
               <TrendingUp size={48} className="mx-auto text-gbc-blue mb-6 stroke-[1.5]" />
               <div className="text-4xl lg:text-5xl font-bold font-display mb-2">15T</div>
-              <div className="text-gray-400 text-sm font-medium tracking-wide uppercase">Production/An</div>
+              <div className="text-gray-400 text-sm font-medium tracking-wide uppercase">{t.home.stats.production}</div>
             </motion.div>
             <motion.div 
               whileInView={{ scale: [0.9, 1] }} 
@@ -139,7 +202,7 @@ const Home = () => {
             >
               <Award size={48} className="mx-auto text-gbc-green mb-6 stroke-[1.5]" />
               <div className="text-4xl lg:text-5xl font-bold font-display mb-2">100%</div>
-              <div className="text-gray-400 text-sm font-medium tracking-wide uppercase">Qualité Naturelle</div>
+              <div className="text-gray-400 text-sm font-medium tracking-wide uppercase">{t.home.stats.quality}</div>
             </motion.div>
           </div>
         </div>
@@ -152,16 +215,16 @@ const Home = () => {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 z-0"></div>
         
         <div className="container-custom relative z-10 text-center">
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-8">Prêt à collaborer avec nous ?</h2>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-8">{t.home.cta.title}</h2>
           <p className="text-xl text-green-50 mb-10 max-w-2xl mx-auto font-light">
-            Que vous soyez distributeur, partenaire au développement ou investisseur, rejoignez l'aventure GBC SARLU.
+            {t.home.cta.text}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/contact" className="px-8 py-4 bg-gbc-yellow text-gbc-black font-bold rounded-xl hover:bg-white transition-all shadow-lg transform hover:-translate-y-1">
-              Contactez-nous
+              {t.home.cta.contact}
             </Link>
-            <Link to="/products" className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-gbc-blue transition-all">
-              Nos Productions
+            <Link to="/productions" className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-gbc-blue transition-all">
+              {t.home.cta.productions}
             </Link>
           </div>
         </div>

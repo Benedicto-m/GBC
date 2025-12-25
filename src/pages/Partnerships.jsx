@@ -3,21 +3,28 @@ import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
 import { Handshake } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { bannierePartnerships } from '../components/img';
+import { useLanguage } from '../context/LanguageContext';
+import { fr } from '../translations/fr';
+import { en } from '../translations/en';
 
 const Partnerships = () => {
+  const { language } = useLanguage();
+  const translations = { fr, en };
+  const t = translations[language];
   return (
     <>
       <Hero 
-        title="Nos Partenaires" 
-        subtitle="Ensemble, on va plus loin"
-        image="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1920&auto=format&fit=crop"
+        title={t.partnerships.hero.title} 
+        subtitle={t.partnerships.hero.subtitle}
+        image={bannierePartnerships}
       />
 
       <section className="py-24 bg-white">
         <div className="container-custom text-center">
-          <SectionTitle title="Ils nous font confiance" center />
+          <SectionTitle title={t.partnerships.intro.title} center />
           <p className="max-w-2xl mx-auto text-gray-500 mb-20">
-            Notre réseau de partenaires s'étend des coopératives locales aux organisations internationales de développement, en passant par les distributeurs engagés.
+            {t.partnerships.intro.text}
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -38,16 +45,16 @@ const Partnerships = () => {
               <Handshake size={64} className="text-gbc-green" />
             </div>
             <div className="flex-1 text-center md:text-left">
-              <h3 className="text-3xl font-bold font-display text-gbc-black mb-4">Devenir Partenaire</h3>
+              <h3 className="text-3xl font-bold font-display text-gbc-black mb-4">{t.partnerships.cta.title}</h3>
               <p className="text-gray-500 text-lg">
-                Vous partagez notre vision d'une agriculture durable et inclusive ? Rejoignez notre réseau de distribution ou soutenez nos projets d'impact.
+                {t.partnerships.cta.text}
               </p>
             </div>
             <Link 
               to="/contact" 
               className="px-10 py-4 bg-gbc-green text-white font-bold rounded-xl hover:bg-gbc-black transition-colors whitespace-nowrap shadow-lg"
             >
-              Contactez-nous
+              {t.partnerships.cta.button}
             </Link>
           </div>
         </div>
