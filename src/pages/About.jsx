@@ -3,7 +3,7 @@ import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Target, Heart, Globe, TrendingUp, User, Users, ChevronDown, Sprout, Eye, Layers, Building2, ArrowRight, CheckCircle2, Shield, Settings, Briefcase, Lightbulb, BarChart3, Wrench, Truck, Lock } from 'lucide-react';
-import { banniereAPropos, imageChamps, imageAbeilles, getTeamImage } from '../components/img';
+import { banniereAPropos, imageChamps, imageAbeilles } from '../components/img';
 import mukizaBinyavanga from '../components/img/team/Mukiza-binyavanga-agustin.jpg';
 import mirindiBenedicto from '../components/img/team/mirindi-benedicto.png';
 import tumainiNsekambizi from '../components/img/team/tumaini-nsekambizi-pascal.jpg';
@@ -12,6 +12,17 @@ import ndizeyeMbanzabugabo from '../components/img/team/ndizeye-mbanzabugabo-aug
 import nRukundoNizeyimana from '../components/img/team/N\'Rukundo-nizeyimana-clémence.jpg';
 import nikuzeBenjamin from '../components/img/team/nikuze-benjamin.png';
 import ntakirutimanaLaurent from '../components/img/team/ntakirutimana-laurent.jpeg';
+import hategekimanaMukundufite from '../components/img/team/hategekimana-mukundufite-benjamin.jpg';
+import nteziyaremyeJeanPaul from '../components/img/team/Nteziyaremye-jean-paul.jpg';
+import rugiracyaneClaude from '../components/img/team/rugirachane-claude.jpg';
+// Images des ouvriers
+import aminaHabyarimana from '../components/img/personnel-ouvrier/Amina-habyarimana-john.jpg';
+import ingabireNtarwanda from '../components/img/personnel-ouvrier/Ingabire-ntarwanda-ortence.jpg';
+import nikuzeBinyavanga from '../components/img/personnel-ouvrier/Nikuze-binyavanga-annuarite.jpg';
+import nizeyimanaHategekimana from '../components/img/personnel-ouvrier/nizeyimana-hategekimana-françois.jpg';
+import nzayutirandeMaguru from '../components/img/personnel-ouvrier/Nzayutirande-maguru-louise.jpg';
+import shukuruChivugo from '../components/img/personnel-ouvrier/Shukuru-chivugo-wivine.jpg';
+import tumsifuNzabonimpa from '../components/img/personnel-ouvrier/Tumsifu-nzabonimpa-alice.jpg';
 import { useLanguage } from '../context/LanguageContext';
 import { fr } from '../translations/fr';
 import { en } from '../translations/en';
@@ -20,8 +31,17 @@ const About = () => {
   const { language } = useLanguage();
   const translations = { fr, en };
   const t = translations[language];
-  // Image par défaut pour les membres sans photo
-  const defaultTeamImage = getTeamImage("default", "default", 0);
+
+  // Fonction pour générer les initiales à partir du nom
+  const getInitials = (name) => {
+    if (!name) return '';
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) {
+      return parts[0].substring(0, 2).toUpperCase();
+    }
+    // Prendre la première lettre du premier mot et la première lettre du dernier mot
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  };
 
   // Structure hiérarchique des Directions avec leurs adjoints
   const managementStructure = [
@@ -50,7 +70,7 @@ const About = () => {
         id: 3,
         role: t.about.team.roles.adminFinancialDirector,
         name: "NTEZIYAREMYE Jean Paul",
-        image: defaultTeamImage
+        image: nteziyaremyeJeanPaul
       },
       deputy: {
         id: 4,
@@ -74,7 +94,7 @@ const About = () => {
         id: 6,
         role: t.about.team.roles.operationsDeputy,
         name: "HATEGEKIMANA MUKUNDUFITE Benjamin",
-        image: defaultTeamImage
+        image: hategekimanaMukundufite
       },
       color: "bg-gbc-yellow",
       icon: Settings
@@ -121,108 +141,54 @@ const About = () => {
       director: {
         id: 11,
         role: t.about.team.roles.marketingDirector,
-        name: "Alexandre TWAGIRAYEZU",
-        image: defaultTeamImage
+        name: "MUHOZA BIGIRIMANA Chérubin"
       },
       deputy: {
         id: 12,
         role: t.about.team.roles.marketingDeputy,
         name: "RUGIRACYANE Claude",
-        image: defaultTeamImage
+        image: rugiracyaneClaude
       },
       color: "bg-pink-500",
       icon: Target
     },
   ];
 
-  // Données pour les Ouvriers et le Staff Technique
-  // Organisé par catégories pour faciliter le filtrage avec le menu cascade
-  const technicalTeam = [
-    // Personnel de supervision
-    { id: 101, role: t.about.team.roles.operationsManager, name: "Nom du Chef", category: t.about.team.categories.supervision },
-    { id: 102, role: t.about.team.roles.beekeepingManager, name: "Nom Resp. Api", category: t.about.team.categories.supervision },
-    { id: 103, role: t.about.team.roles.agricultureManager, name: "Nom Resp. Agri", category: t.about.team.categories.supervision },
-    
-    // Techniciens
-    { id: 201, role: t.about.team.roles.transformationTech, name: "Nom Tech 1", category: t.about.team.categories.technique },
-    { id: 202, role: t.about.team.roles.transformationTech, name: "Nom Tech 2", category: t.about.team.categories.technique },
-    { id: 203, role: t.about.team.roles.beekeepingTech, name: "Nom Tech Api", category: t.about.team.categories.technique },
-    { id: 204, role: t.about.team.roles.agricultureTech, name: "Nom Tech Agri", category: t.about.team.categories.technique },
-    
-    // Ouvriers agricoles
-    { id: 301, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 1", category: t.about.team.categories.farmWorkers },
-    { id: 302, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 2", category: t.about.team.categories.farmWorkers },
-    { id: 303, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 3", category: t.about.team.categories.farmWorkers },
-    { id: 304, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 4", category: t.about.team.categories.farmWorkers },
-    { id: 305, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 5", category: t.about.team.categories.farmWorkers },
-    { id: 306, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 6", category: t.about.team.categories.farmWorkers },
-    { id: 307, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 7", category: t.about.team.categories.farmWorkers },
-    { id: 308, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 8", category: t.about.team.categories.farmWorkers },
-    { id: 309, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 9", category: t.about.team.categories.farmWorkers },
-    { id: 310, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 10", category: t.about.team.categories.farmWorkers },
-    { id: 311, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 11", category: t.about.team.categories.farmWorkers },
-    { id: 312, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 12", category: t.about.team.categories.farmWorkers },
-    { id: 313, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 13", category: t.about.team.categories.farmWorkers },
-    { id: 314, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 14", category: t.about.team.categories.farmWorkers },
-    { id: 315, role: t.about.team.roles.farmWorker, name: "Nom Ouvrier 15", category: t.about.team.categories.farmWorkers },
-    
-    // Support et logistique
-    { id: 401, role: t.about.team.roles.driver, name: "Nom Chauffeur 1", category: t.about.team.categories.logistics },
-    { id: 402, role: t.about.team.roles.driver, name: "Nom Chauffeur 2", category: t.about.team.categories.logistics },
-    { id: 403, role: t.about.team.roles.security, name: "Nom Sécurité 1", category: t.about.team.categories.security },
-    { id: 404, role: t.about.team.roles.security, name: "Nom Sécurité 2", category: t.about.team.categories.security },
-    { id: 405, role: t.about.team.roles.maintenance, name: "Nom Maintenance", category: t.about.team.categories.logistics },
+  // Données pour les Ouvriers (sans catégorisation)
+  const farmWorkers = [
+    // Alexandre en première place
+    { id: 300, role: t.about.team.roles.farmWorker, name: "Alexandre TWAGIRAYEZU" },
+    // Ouvriers agricoles (avec images dans l'ordre alphabétique du dossier)
+    { id: 301, role: t.about.team.roles.farmWorker, name: "AMINA HABYARIMANA John", image: aminaHabyarimana },
+    { id: 302, role: t.about.team.roles.farmWorker, name: "INGABIRE NTARWANDA Ortence", image: ingabireNtarwanda },
+    { id: 303, role: t.about.team.roles.farmWorker, name: "NIKUZE BINYAVANGA Anuarite", image: nikuzeBinyavanga },
+    { id: 304, role: t.about.team.roles.farmWorker, name: "NIZEYIMANA HATEGEKIMANA François", image: nizeyimanaHategekimana },
+    { id: 305, role: t.about.team.roles.farmWorker, name: "NZAYUTIRANDE MAGURU Louise", image: nzayutirandeMaguru },
+    { id: 306, role: t.about.team.roles.farmWorker, name: "SHUKURU CHIVUGO Wivine", image: shukuruChivugo },
+    { id: 307, role: t.about.team.roles.farmWorker, name: "TUMSIFU NZABONIMPA Alice", image: tumsifuNzabonimpa },
+    // Ouvriers sans images
+    { id: 308, role: t.about.team.roles.farmWorker, name: "IZABAYO SEBISHOMA Ignace" },
+    { id: 309, role: t.about.team.roles.farmWorker, name: "HAKIZIMANA NTARWANDA Ezechiel" },
+    { id: 310, role: t.about.team.roles.farmWorker, name: "RURAHOZE INNOCENT" },
+    { id: 311, role: t.about.team.roles.farmWorker, name: "MANIRAGABA EMMANUEL" },
+    { id: 312, role: t.about.team.roles.farmWorker, name: "HAKIZIMANA NTAHORUGIYE Jérémie" },
   ];
 
-  // État pour les onglets de catégories
-  const [activeCategory, setActiveCategory] = useState('all'); // 'all', 'supervision', 'technique', 'farmWorkers', 'logistics', 'security'
-  const [visibleCounts, setVisibleCounts] = useState({
-    all: 12,
-    supervision: 12,
-    technique: 12,
-    farmWorkers: 12,
-    logistics: 12,
-    security: 12
-  });
-  const itemsPerPage = 12;
+  // État pour les ouvriers (sans catégorisation)
+  // Une ligne complète = 5 éléments (lg:grid-cols-5)
+  const farmWorkersItemsPerPage = 5;
+  const [farmWorkersVisibleCount, setFarmWorkersVisibleCount] = useState(farmWorkersItemsPerPage);
+  const visibleFarmWorkers = farmWorkers.slice(0, farmWorkersVisibleCount);
+  const hasMoreFarmWorkers = farmWorkersVisibleCount < farmWorkers.length;
+  const hasLessFarmWorkers = farmWorkersVisibleCount > farmWorkersItemsPerPage;
 
-  // Filtrer les membres par catégorie
-  const getFilteredTeam = (category) => {
-    if (category === 'all') return technicalTeam;
-    return technicalTeam.filter(member => member.category === category);
+  const loadMoreFarmWorkers = () => {
+    setFarmWorkersVisibleCount(prev => Math.min(prev + farmWorkersItemsPerPage, farmWorkers.length));
   };
 
-  const filteredTeam = getFilteredTeam(activeCategory);
-  const currentVisibleCount = visibleCounts[activeCategory] || 12;
-  const visibleTeam = filteredTeam.slice(0, currentVisibleCount);
-  const hasMore = currentVisibleCount < filteredTeam.length;
-  const hasLess = currentVisibleCount > itemsPerPage;
-
-  // Fonction pour charger plus de membres
-  const loadMore = () => {
-    setVisibleCounts(prev => ({
-      ...prev,
-      [activeCategory]: Math.min((prev[activeCategory] || itemsPerPage) + itemsPerPage, filteredTeam.length)
-    }));
+  const loadLessFarmWorkers = () => {
+    setFarmWorkersVisibleCount(prev => Math.max(farmWorkersItemsPerPage, prev - farmWorkersItemsPerPage));
   };
-
-  // Fonction pour charger moins de membres
-  const loadLess = () => {
-    setVisibleCounts(prev => ({
-      ...prev,
-      [activeCategory]: Math.max(itemsPerPage, (prev[activeCategory] || itemsPerPage) - itemsPerPage)
-    }));
-  };
-
-  // Catégories disponibles avec leurs labels
-  const categories = [
-    { id: 'all', label: t.about.team.categories.all, icon: Users, count: technicalTeam.length },
-    { id: 'supervision', label: t.about.team.categories.supervision, icon: Settings, count: getFilteredTeam('supervision').length },
-    { id: 'technique', label: t.about.team.categories.technique, icon: Wrench, count: getFilteredTeam('technique').length },
-    { id: 'farmWorkers', label: t.about.team.categories.farmWorkers, icon: Sprout, count: getFilteredTeam('farmWorkers').length },
-    { id: 'logistics', label: t.about.team.categories.logistics, icon: Truck, count: getFilteredTeam('logistics').length },
-    { id: 'security', label: t.about.team.categories.security, icon: Lock, count: getFilteredTeam('security').length },
-  ];
 
   return (
     <>
@@ -700,13 +666,19 @@ const About = () => {
                         {/* Directeur */}
                         <div className="text-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group/item">
                           <div className="relative inline-block mb-2">
-                            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gbc-green shadow-sm group-hover/item:scale-110 transition-transform duration-300">
-                              <img 
-                                src={direction.director.image} 
-                                alt={direction.director.role} 
-                                className="w-full h-full object-cover" 
-                                loading="lazy"
-                              />
+                            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gbc-green shadow-sm group-hover/item:scale-110 transition-transform duration-300 bg-gbc-green/10 flex items-center justify-center">
+                              {direction.director.image ? (
+                                <img 
+                                  src={direction.director.image} 
+                                  alt={direction.director.role} 
+                                  className="w-full h-full object-cover" 
+                                  loading="lazy"
+                                />
+                              ) : (
+                                <span className="text-gbc-green font-bold text-sm">
+                                  {getInitials(direction.director.name)}
+                                </span>
+                              )}
                             </div>
                             <div className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-gbc-green rounded-full border border-white flex items-center justify-center">
                               <span className="text-white text-[8px] font-bold">D</span>
@@ -726,13 +698,19 @@ const About = () => {
                         {/* Adjoint */}
                         <div className="text-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group/item">
                           <div className="relative inline-block mb-2">
-                            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gbc-blue shadow-sm group-hover/item:scale-110 transition-transform duration-300">
-                              <img 
-                                src={direction.deputy.image} 
-                                alt={direction.deputy.role} 
-                                className="w-full h-full object-cover" 
-                                loading="lazy"
-                              />
+                            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gbc-blue shadow-sm group-hover/item:scale-110 transition-transform duration-300 bg-gbc-blue/10 flex items-center justify-center">
+                              {direction.deputy.image ? (
+                                <img 
+                                  src={direction.deputy.image} 
+                                  alt={direction.deputy.role} 
+                                  className="w-full h-full object-cover" 
+                                  loading="lazy"
+                                />
+                              ) : (
+                                <span className="text-gbc-blue font-bold text-sm">
+                                  {getInitials(direction.deputy.name)}
+                                </span>
+                              )}
                             </div>
                             <div className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-gbc-blue rounded-full border border-white flex items-center justify-center">
                               <span className="text-white text-[8px] font-bold">A</span>
@@ -756,56 +734,20 @@ const About = () => {
             </div>
           </div>
 
-          {/* Technical Staff Section - Avec onglets par catégorie */}
-          <div>
+          {/* Personnel Technique et Ouvrier Section - Sans catégorisation */}
+          <div className="mb-20">
             <div className="flex items-center justify-center gap-3 mb-8">
-              <div className="p-2 bg-gbc-green/10 rounded-full text-gbc-green">
-                <User size={24} />
+              <div className="p-2 bg-gbc-yellow/10 rounded-full text-gbc-yellow">
+                <Sprout size={24} />
               </div>
-              <h3 className="text-2xl font-bold text-gbc-black">{t.about.team.technical}</h3>
+              <h3 className="text-2xl font-bold text-gbc-black">Personnel Technique et Ouvrier</h3>
             </div>
 
-            {/* Onglets de catégories */}
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
-              {categories.map((cat) => {
-                const IconComponent = cat.icon;
-                const isActive = activeCategory === cat.id;
-                return (
-                  <motion.button
-                    key={cat.id}
-                    onClick={() => {
-                      setActiveCategory(cat.id);
-                      // Réinitialiser le compteur pour cette catégorie si nécessaire
-                      if (!visibleCounts[cat.id]) {
-                        setVisibleCounts(prev => ({ ...prev, [cat.id]: itemsPerPage }));
-                      }
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                      isActive
-                        ? 'bg-gbc-green text-white shadow-lg'
-                        : 'bg-white text-gbc-black border-2 border-gray-200 hover:border-gbc-green hover:bg-gbc-green/5'
-                    }`}
-                  >
-                    <IconComponent size={18} />
-                    <span>{cat.label}</span>
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
-                      isActive ? 'bg-white/20 text-white' : 'bg-gbc-green/10 text-gbc-green'
-                    }`}>
-                      {cat.count}
-                    </span>
-                  </motion.button>
-                );
-              })}
-            </div>
-
-            {/* Grille des membres avec animations */}
-            {filteredTeam.length > 0 ? (
+            {/* Grille des ouvriers */}
+            {farmWorkers.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-8">
-                  {visibleTeam.map((member, idx) => {
-                    const memberImage = getTeamImage(member.role, member.category, member.id);
+                  {visibleFarmWorkers.map((member, idx) => {
                     return (
                       <motion.div
                         key={member.id}
@@ -815,16 +757,24 @@ const About = () => {
                         transition={{ delay: idx * 0.02, duration: 0.3 }}
                         className="bg-white p-4 rounded-xl text-center shadow-sm hover:shadow-lg border border-gray-100 transition-all duration-300 hover:-translate-y-2 group"
                       >
-                        <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-4 overflow-hidden border-2 border-gray-50 relative group-hover:border-gbc-green transition-colors">
-                          <img 
-                            src={memberImage} 
-                            alt={member.role} 
-                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" 
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-gbc-green/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span className="text-xs text-white font-bold">{t.about.team.see}</span>
-                          </div>
+                        <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-4 overflow-hidden border-2 border-gray-50 relative group-hover:border-gbc-green transition-colors flex items-center justify-center">
+                          {member.image ? (
+                            <>
+                              <img 
+                                src={member.image} 
+                                alt={member.role} 
+                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" 
+                                loading="lazy"
+                              />
+                              <div className="absolute inset-0 bg-gbc-green/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span className="text-xs text-white font-bold">{t.about.team.see}</span>
+                              </div>
+                            </>
+                          ) : (
+                            <span className="text-gbc-green font-bold text-xl">
+                              {getInitials(member.name)}
+                            </span>
+                          )}
                         </div>
                         <h4 className="font-bold text-md text-gbc-black mb-1 leading-tight group-hover:text-gbc-green transition-colors">
                           {member.name}
@@ -835,13 +785,13 @@ const About = () => {
                   })}
                 </div>
 
-                {/* Boutons Charger plus / Charger moins */}
-                {(hasMore || hasLess) && (
+                {/* Boutons Charger plus / Charger moins pour les ouvriers */}
+                {(hasMoreFarmWorkers || hasLessFarmWorkers) && (
                   <div className="text-center mt-8">
                     <div className="flex items-center justify-center gap-4">
-                      {hasLess && (
+                      {hasLessFarmWorkers && (
                         <motion.button
-                          onClick={loadLess}
+                          onClick={loadLessFarmWorkers}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           className="px-6 py-3 bg-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-300 transition-colors shadow-md hover:shadow-lg flex items-center gap-2"
@@ -850,9 +800,9 @@ const About = () => {
                           <span>{t.about.team.loadLess}</span>
                         </motion.button>
                       )}
-                      {hasMore && (
+                      {hasMoreFarmWorkers && (
                         <motion.button
-                          onClick={loadMore}
+                          onClick={loadMoreFarmWorkers}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           className="px-6 py-3 bg-gbc-green text-white font-bold rounded-xl hover:bg-gbc-blue transition-colors shadow-lg hover:shadow-xl flex items-center gap-2"
@@ -863,7 +813,7 @@ const About = () => {
                       )}
                     </div>
                     <p className="text-sm text-gray-500 mt-3">
-                      {t.about.team.showing} {currentVisibleCount} / {filteredTeam.length} {t.about.team.members}
+                      {t.about.team.showing} {farmWorkersVisibleCount} / {farmWorkers.length} {t.about.team.members}
                     </p>
                   </div>
                 )}

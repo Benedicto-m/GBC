@@ -87,3 +87,4 @@ export const getTeamImage = (role, category = 'default', memberId = null) => {
 - Le placeholder par défaut (`agriculteur.jpeg`) sera utilisé pour les images manquantes
 
 
+
