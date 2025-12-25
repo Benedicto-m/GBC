@@ -26,7 +26,7 @@ export const en = {
   // Home Page
   home: {
     hero: {
-      title: "Cultivating Agricultural Excellence in North Kivu",
+      title: "Transforming local opportunities into concrete solutions",
       subtitle: "Innovation and sustainable solutions for a prosperous future",
     },
     mission: {

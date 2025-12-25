@@ -31,14 +31,14 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
-              <img src={logo} alt="GBC Logo" className="h-12 w-auto object-contain" loading="lazy" />
+            <Link to="/" className="flex-shrink-0 flex items-center gap-2 sm:gap-3 group">
+              <img src={logo} alt="GBC Logo" className="h-10 sm:h-12 w-auto object-contain" loading="lazy" />
                 
                  <div className="flex flex-col">
-                <span className="font-display font-bold text-2xl text-gbc-black tracking-tight leading-none group-hover:text-gbc-green transition-colors">
+                <span className="font-display font-bold text-lg sm:text-xl md:text-2xl text-gbc-black tracking-tight leading-none group-hover:text-gbc-green transition-colors">
                   GBC SARLU
                 </span>
-                <span className="text-[10px] font-medium text-gbc-blue tracking-wide mt-0.5 leading-tight">
+                <span className="text-[8px] sm:text-[9px] md:text-[10px] font-medium text-gbc-blue tracking-wide mt-0.5 leading-tight line-clamp-2 sm:line-clamp-none">
                   {t.home.hero.subtitle}
                 </span>
               </div>

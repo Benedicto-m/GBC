@@ -28,7 +28,7 @@ export const fr = {
   // Home Page
   home: {
     hero: {
-      title: "Cultivons l'Excellence Agricole au Nord-Kivu",
+      title: "Transformer les opportunités locales en solutions concrètes",
       subtitle: "Innovation et solution durable pour un avenir prospère",
     },
     mission: {

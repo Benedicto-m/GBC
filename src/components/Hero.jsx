@@ -17,13 +17,13 @@ const Hero = ({ title, image, height = "min-h-[50vh]" }) => {
       <div className="absolute inset-0 bg-gradient-to-r from-gbc-black/40 via-gbc-black/30 to-gbc-green/20 z-0" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 pt-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-12 sm:pt-16 md:pt-20">
         <div className="max-w-3xl">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight drop-shadow-lg"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white mb-6 sm:mb-8 leading-tight drop-shadow-lg"
           >
             {title}
           </motion.h1>
@@ -33,7 +33,7 @@ const Hero = ({ title, image, height = "min-h-[50vh]" }) => {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="h-2 w-24 bg-gradient-to-r from-gbc-green to-gbc-blue rounded-full origin-left"
+            className="h-1.5 sm:h-2 w-20 sm:w-24 bg-gradient-to-r from-gbc-green to-gbc-blue rounded-full origin-left"
           />
         </div>
       </div>
