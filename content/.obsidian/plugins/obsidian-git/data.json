@@ -1,0 +1,25 @@
+{
+  "vaultBackupInterval": 20,
+  "autoPullInterval": 0,
+  "autoPullOnBoot": true,
+  "disablePush": false,
+  "pullBeforePush": true,
+  "disablePopups": false,
+  "listChangedFilesInMessageBody": false,
+  "commitMessage": "vault backup: {{date}}",
+  "commitDateFormat": "YYYY-MM-DD HH:mm:ss",
+  "autoSaveInterval": 0,
+  "autoCommitAfterFileChange": false,
+  "fileChangeTime": 2000,
+  "submoduleRecurseCheckout": false,
+  "gitDir": "",
+  "showStatusBar": true,
+  "updateSubmodules": false,
+  "customMessageOnAutoBackup": true,
+  "autoBackupAfterFileChange": false,
+  "syncMethod": "merge",
+  "listChangedFilesInMessageBody": false,
+  "refreshSourceControl": true,
+  "showBranchStatusBar": true
+}
+

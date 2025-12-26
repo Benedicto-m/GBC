@@ -2,10 +2,12 @@ import React from 'react';
 import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
 import ProductCard from '../components/ProductCard';
+import MarkdownContent from '../components/MarkdownContent';
 import { motion } from 'framer-motion';
 import { Users, Sprout, TrendingUp, Award, ArrowRight, Banana, TreePine, Carrot, Flame, Cherry, Apple } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { usePageContent } from '../hooks/usePageContent';
 import { fr } from '../translations/fr';
 import { en } from '../translations/en';
 import { banniereAccueil, photoIntroAgriculteur, agricultureCacao, apicultureMiel } from '../components/img';
@@ -14,10 +16,12 @@ const Home = () => {
   const { language } = useLanguage();
   const translations = { fr, en };
   const t = translations[language];
+  const { metadata, loading: pageLoading } = usePageContent('home');
+  
   return (
     <>
       <Hero 
-        title={t.home.hero.title}
+        title={metadata.title || t.home.hero.title}
         image={banniereAccueil}
         height="min-h-[50vh]"
       />
@@ -34,16 +38,29 @@ const Home = () => {
                 title={t.home.mission.title}
                 subtitle={t.home.mission.subtitle}
               />
-              <p className="text-lg text-gray-500 mb-6 leading-relaxed font-sans">
-                <strong className="text-gbc-black">Global Binyavanga Company (GBC SARLU)</strong> {t.home.mission.text1}
-              </p>
-              <p className="text-lg text-gray-500 mb-6 leading-relaxed font-sans">
-                {t.home.mission.text2}
-              </p>
-              <p className="text-lg text-gray-500 mb-8 leading-relaxed font-sans">
-                {t.home.mission.text3}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              {pageLoading ? (
+                <div className="space-y-6">
+                  <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                  <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                  <div className="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
+                </div>
+              ) : (
+                <MarkdownContent 
+                  source={`pages/home.${language}.md`}
+                  className="markdown-intro"
+                  renderOptions={{
+                    components: {
+                      p: ({ node, ...props }) => (
+                        <p className="text-lg text-gray-500 mb-6 leading-relaxed font-sans" {...props} />
+                      ),
+                      h1: () => null,
+                      h2: () => null,
+                      h3: () => null,
+                    }
+                  }}
+                />
+              )}
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <Link to="/about" className="btn-primary shadow-lg hover:shadow-xl">
                   {t.home.mission.discoverVision}
                 </Link>

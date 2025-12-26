@@ -214,3 +214,4 @@ Pour toute question, consultez :
 - Les exemples dans `src/examples/`
 - Les fichiers d'exemple dans `content/pages/`
 
+

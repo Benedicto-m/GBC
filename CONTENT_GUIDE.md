@@ -271,3 +271,4 @@ Consultez les fichiers d'exemple dans :
 5. **Liens** : Utilisez les liens internes d'Obsidian pour créer des connexions
 6. **Images** : Stockez les images dans `content/attachments/` ou `src/components/img/`
 
+

@@ -35,3 +35,4 @@ Nous aspirons à être un leader dans le secteur agricole rwandais, en combinant
 
 Notre équipe est composée de professionnels passionnés par l'agriculture et le développement durable. Nous travaillons en étroite collaboration avec les agriculteurs locaux pour créer un impact positif.
 
+

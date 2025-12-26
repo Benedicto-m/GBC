@@ -11,7 +11,7 @@ tags:
   - agriculture
 ---
 
-# Notre Mission
+# Notre Mission générale 
 
 **Global Binyavanga Company (GBC SARLU)** est une entreprise dédiée à l'agriculture durable et à la transformation de produits locaux au Rwanda.
 
@@ -45,4 +45,5 @@ Notre production de miel de qualité supérieure contribue à la préservation d
 - **6 hectares** de terres cultivées
 - **15 tonnes** de production annuelle
 - **100%** d'engagement qualité
+
 
