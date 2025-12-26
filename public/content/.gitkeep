@@ -1,4 +1,0 @@
-# Ce dossier sera utilisé pour servir les fichiers Markdown en production
-# Les fichiers seront copiés depuis content/ vers public/content/ lors du build
-
-
