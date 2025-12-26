@@ -11,7 +11,7 @@ tags:
   - agriculture
 ---
 
-# Notre Mission
+# Notre Mission générale 
 
 **Global Binyavanga Company (GBC SARLU)** est une entreprise dédiée à l'agriculture durable et à la transformation de produits locaux au Rwanda.
 

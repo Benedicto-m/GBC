@@ -4,10 +4,7 @@
   "defaultViewMode": "source",
   "showLineNumber": true,
   "spellcheck": true,
-  "spellcheckLanguages": [
-    "fr",
-    "en"
-  ],
+  "spellcheckLanguages": null,
   "alwaysUpdateLinks": true,
   "newFileLocation": "folder",
   "newFileFolderPath": "pages",
@@ -26,4 +23,3 @@
   "showUnsupportedFiles": true,
   "promptDelete": true
 }
-
