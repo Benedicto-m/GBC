@@ -1,0 +1,29 @@
+{
+  "legacyEditor": false,
+  "livePreview": true,
+  "defaultViewMode": "source",
+  "showLineNumber": true,
+  "spellcheck": true,
+  "spellcheckLanguages": [
+    "fr",
+    "en"
+  ],
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "pages",
+  "attachmentFolderPath": "attachments",
+  "useMarkdownLinks": true,
+  "strictLineBreaks": false,
+  "showFrontmatter": true,
+  "showIndentGuide": true,
+  "showInlineTitle": true,
+  "rightToLeft": false,
+  "readableLineLength": true,
+  "tabSize": 2,
+  "useTab": false,
+  "foldHeading": true,
+  "foldIndent": true,
+  "showUnsupportedFiles": true,
+  "promptDelete": true
+}
+

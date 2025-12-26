@@ -1,0 +1,12 @@
+# Ignorer les fichiers temporaires d'Obsidian
+workspace-mobile.json
+workspace.json
+hotkeys.json
+workspaces/
+community-plugins.json
+plugins/
+workspace.json
+
+# Garder la configuration de base
+!app.json
+
