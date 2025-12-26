@@ -15,7 +15,7 @@ tags:
 
 Global Binyavanga Company (GBC SARLU) a été fondée avec une vision claire : transformer l'agriculture locale en créant des opportunités durables pour les communautés rurales.
 
-## Notre Vision
+## Notre Vision bien respecté 
 
 Nous aspirons à être un leader dans le secteur agricole rwandais, en combinant :
 
