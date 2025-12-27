@@ -44,6 +44,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-display font-bold mb-6 text-gbc-yellow">{t.footer.navigation}</h3>
             <ul className="space-y-3 text-sm font-medium text-gray-400">
+              <li><Link to="/" className="hover:text-gbc-green transition-colors flex items-center gap-2"><ArrowRight size={14}/> {t.footer.home}</Link></li>
               <li><Link to="/about" className="hover:text-gbc-green transition-colors flex items-center gap-2"><ArrowRight size={14}/> {t.footer.about}</Link></li>
               <li><Link to="/productions" className="hover:text-gbc-green transition-colors flex items-center gap-2"><ArrowRight size={14}/> {t.footer.productions}</Link></li>
               <li><Link to="/apiculture" className="hover:text-gbc-green transition-colors flex items-center gap-2"><ArrowRight size={14}/> {t.footer.apiculture}</Link></li>

@@ -366,6 +366,7 @@ export const en = {
   footer: {
     description: "The future of agribusiness in North Kivu. Technological innovation and respect for the land for sustainable growth.",
     navigation: "Navigation",
+    home: "Home",
     about: "About",
     productions: "Our Productions",
     apiculture: "Beekeeping",

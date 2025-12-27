@@ -370,6 +370,7 @@ export const fr = {
   footer: {
     description: "L'avenir de l'agro-industrie au Nord-Kivu. Innovation technologique et respect de la terre pour une croissance durable.",
     navigation: "Navigation",
+    home: "Accueil",
     about: "À Propos",
     productions: "Nos Productions",
     apiculture: "Apiculture",
